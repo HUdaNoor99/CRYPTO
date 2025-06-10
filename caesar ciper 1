@@ -1,12 +1,21 @@
-Ini adalah salah satu sandi tertua di buku, bisakah Anda mendekripsi pesannya ? Anda dapat menemukan teks sandi di /problems/caesar-cipher-1_2_73ab1c3e92ea50396ad143ca48039b86 di server shell
+# For comments on this function look at "Crypto Warmup 2" challenge
+def decryptor(key, ciphertext):
+    plaintext = ""
+    for c in ciphertext:
+        newChar = ord(c) - key
+        if newChar < ord("a"):
+            newChar = newChar + 26
+        plaintext += chr(newChar)
+    return plaintext
 
-Petunjuk
-tutorial sandi caesar
+ciphertext = "payzgmuujurjigkygxiovnkxlcgihubb"
+# For each valid key value
+for i in range(1, 26):
+    plaintext = decryptor(i, ciphertext)
+    print("key is:", i, "text is:", plaintext)
 
-Larutan
-Jadi ciphertext yang kita dapatkan adalah:
 
-picoCTF{payzgmuujurjigkygxiovnkxlcgihubb}  
+
 Kita perlu mendekripsinya, dan yang kita tahu enkripsinya adalah sandi Caesar .
 Jadi setelah mencarinya di Google, saya menemukan bahwa ROT13 yang kita bahas sebelumnya
 adalah kasus sandi Caesar yang bersifat pribadi ketika kuncinya adalah 13.
@@ -21,53 +30,3 @@ En(x) - ciphertext untuk n dan x
 
 Dan dekripsi hanyalah kebalikan dari operasi ini: Jadi saya menulis skrip python untuk mencoba setiap nilai kunci yang valid untuk ciphertext yang kami dapatkan:
 Dekripsi
-
-#For comments on this function look at "Crypto Warmup 2" challenge
-def decryptor(key, ciphertext):
-	plaintext = ""
-	for c in ciphertext:
-		newChar = ord(c)-key
-		if newChar < ord("a"):
-			newChar = newChar + 26
-		plaintext += chr(newChar)
-	return plaintext
-
-
-ciphertext = "payzgmuujurjigkygxiovnkxlcgihubb"
-#For each valid key value
-for i in range(1,26):
-	plaintext = decryptor(i,ciphertext)
-	print "key is: ", i ,"text is: ", plaintext
-	
-Hasilnya:
-
-kuncinya adalah: 1 teksnya adalah: ozxyflttitqihfjxfwhnumjwkbfhgtaa
-kuncinya adalah: 2 teksnya adalah: nywxeksshsphgeiwevgmtlivjaegfszz
-kuncinya adalah: 3 teksnya adalah: mxvwdjrrgrogfdhvduflskhuizdferyy
-kuncinya adalah: 4 teksnya adalah: lwuvciqqfqnfecguctekrjgthycedqxx
-kuncinya adalah: 5 teksnya adalah: kvtubhppepmedbftbsdjqifsgxbdcpww
-kuncinya adalah: 6 teksnya adalah: justagoodoldcaesarcipherfwacbovv
-kuncinya adalah: 7 teksnya adalah: itrszfnncnkcbzdrzqbhogdqevzbanuu
-kuncinya adalah: 8 teksnya adalah: hsqryemmbmjbaycqypagnfcpduyazmtt
-kuncinya adalah: 9 teksnya adalah: adalah: grpqxdllaliazxbpxozfmeboctxzylss
-kunci adalah: 10 teks adalah: fqopwckkzkhzywaownyeldanbswyxkrr
-kunci adalah: 11 teks adalah: epnovbjjyjgyxvznvmxdkczmarvxwjqq
-kunci adalah: 12 teks adalah: domnuaiixifxwuymulwcjbylzquwvipp
-kunci adalah: 13 teks adalah: cnlmtzhhwhewvtxltkvbiaxkyptvuhoo
-kunci adalah: 14 teks adalah: bmklsyggvgdvuswksjuahzwjxosutgnn
-kunci adalah: 15 teks adalah: aljkrxffufcutrvjritzgyviwnrtsfmm
-kunci adalah: 16 teks adalah: zkijqweetebtsquiqhsyfxuhvmqsrell
-kunci adalah: 17 teks adalah: yjhipvddsdasrpthpgrxewtgulprqdkk
-kuncinya adalah: 18 teksnya adalah: xighouccrczrqosgofqwdvsftkoqpcjj
-kuncinya adalah: 19 teksnya adalah: whfgntbbqbyqpnrfnepvcuresjnpobii
-kuncinya adalah: 20 teksnya adalah: vgefmsaapaxpomqemdoubtqdrimonahh
-kuncinya adalah: 21 teksnya adalah: ufdelrzzozwonlpdlcntaspcqhlnmzgg
-kuncinya adalah: 22 teksnya adalah: tecdkqyynyvnmkockbmszrobpgkmlyff
-kuncinya adalah: 23 teksnya adalah: sdbcjpxxmxumljnbjalryqnaofjlkxee
-kuncinya adalah: 24 teksnya adalah: rcabiowwlwtlkimaizkqxpmzneikjwdd
-kuncinya adalah: 25 teksnya adalah: qbzahnvvkvskjhlzhyjpwolymdhjivcc
-
-Dan seperti yang bisa kita lihat, hanya kunci 6 yang memiliki arti jadi itu adalah bendera
-
-Bendera
-picoCTF{justagoodoldcaesarcipherfwacbovv} 
